@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recipe Generator</title>  
+    <link rel="stylesheet" href="{{ url_for("static",filename="css/styles.css") }}">
+    <script type="text/javascript">
+        async function generateTutorial() {
+            const component = document.getElementById("components").value;
+            const output = document.getElementById("output");
+            const newchat = document.getElementById("chat").cloneNode(true);  // Use cloneNode to include children
+            document.getElementById("container").appendChild(newchat);
+            const newchatComponents = newchat.querySelector('#components');
+            newchatComponents.value = '';
+            output.textContent = "Cooking a recipe for you....";
+            try {
+                const response = await fetch('/generate', {
+                    method: "POST",
+                    body: new FormData(document.getElementById("tutorial-form"))
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const newOutput = await response.text();
+                output.textContent = newOutput;
+                
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+
+        }
+
+        function copy2clipboard() {
+            const output = document.getElementById("output");
+            const textarea = document.createElement("textarea");
+            textarea.value = output.textContent;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+            alert("Copied to clipboard");
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <h1 id="header">Custom Recipe Generator</h1>
+        <div id="chat">            
+            <form id="tutorial-form" >
+                <div id="input-div">
+                    <label for="components" class="form-label">Ingredients / Items:</label> 
+                    <input type="text" id="components" name="components" placeholder="Enter the list of Ingredients or items you have e.g. Bread, jam, potato etc." required>
+                </div>
+                <button type="submit" id="submit-button" onclick="event.preventDefault();generateTutorial()">Generate</button>
+            </form>
+
+           
+            <div>
+                <p>Output:</p>   
+                <button type="button" id="copy-button" onclick="copy2clipboard()">Copy</button>            
+                <pre id="output">{{ output }}</pre>
+            </div>
+         
+        </div>
+    </div>
+</body>
+</html>

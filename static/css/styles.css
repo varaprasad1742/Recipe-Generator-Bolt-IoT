@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: linear-gradient(to right,rgb(236, 197, 197),rgb(136, 237, 136));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1
+{
+    margin: 1%;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 250%;
+    color: rgb(24, 173, 173);
+    margin-left: 35%;
+}
+#container{
+    backdrop-filter: blur(0.5em); 
+    border: 0.1em solid black;
+    border-radius: 1em;
+    width:80%;    
+}
+.form-label{
+    font-size: 2em;
+}
+#components{
+    border: none;
+    border-bottom: 0.1em solid black;
+    border-radius: 1em;
+    font-size: 1.5em;
+    width: 40em;
+    padding: 0.4%;
+}
+
+#chat{
+    /* border: 0.1em solid black;
+    border-radius: 1em; */
+    margin: 1em;
+    padding: 1em;
+}
+
+#copy-button{
+    margin-left: 65em;
+    font-size: 1.2em;
+    border-radius: 1em;
+    padding: 0.3em;
+}
+
+#copy-button:hover{
+    transform: scale(1.1);
+    cursor: copy;
+    
+}
+
+#submit-button{
+    /* border-radius: 1em; */
+    padding: 0.2em;
+    font-size: 1.5em;
+    
+}
+
+p{
+    font-size: 1.5em;
+    padding-top: 0.3em;
+}
+
+#output{
+    margin-top: 1em;
+    background-color: aliceblue;
+    border-radius: 1em;
+    padding: 1em;
+    font-size: 1.2em;
+    display: flex;
+    align-content: space-around;
+    max-width: 100%; /* Set maximum width to prevent exceeding screen width */
+    overflow-x: auto; /* Add horizontal scrollbar if needed */
+    word-wrap: break-word;
+}
