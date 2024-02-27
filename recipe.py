@@ -3,7 +3,7 @@ import openai
 import os
 import re
 
-openai.api_key="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"
+openai.api_key=os.environ.get("OPENAI_API")
 
 
 def chat_gpt(prompt: str):
